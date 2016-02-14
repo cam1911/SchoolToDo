@@ -1,0 +1,20 @@
+<h1>Listing assignments</h1>
+<table>
+  <% @assignments.each do |assignment| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt><%= assignment.title %></dt>
+        <dt><%= assignment.due %></dt>
+        <dt><%= truncate(strip_tags(assignment.description), length: 80) %></dt>
+      </dl>
+    </td>
+    <td class="list_actions">
+      <%= link_to 'Show', assignment %><br/>
+      <%= link_to 'Edit', edit_assignment_path(assignment) %><br/>
+      <%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<button><%= link_to 'New assignment', new_assignment_path %></button>
